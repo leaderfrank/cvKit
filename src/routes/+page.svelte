@@ -140,7 +140,6 @@
 
 		observer.observe(element);
 
-		// FIX: Return an object with a destroy method for a valid Svelte Action
 		return {
 			destroy() {
 				observer.disconnect();
@@ -149,7 +148,6 @@
 	}
 
 	// Create intersection observer for items with delay
-	// FIX: Changed signature to accept a single 'params' object for Svelte Action compatibility.
 	function observeItem(element: HTMLElement, params: { callback: () => void; delay?: number }) {
 		if (!element) return;
 
@@ -174,7 +172,6 @@
 
 		observer.observe(element);
 
-		// FIX: Return an object with a destroy method for a valid Svelte Action
 		return {
 			destroy() {
 				observer.disconnect();
@@ -185,14 +182,11 @@
 	onMount(() => {
 		mounted = true;
 
-		// Hero section appears immediately
 		setTimeout(() => (heroVisible = true), 100);
 
-		// Handle scroll
 		const handleScroll = () => (scrollY = window.scrollY);
 		window.addEventListener('scroll', handleScroll);
 
-		// Handle mouse movement for parallax
 		const handleMouseMove = (e: MouseEvent) => {
 			mouseX.set(e.clientX);
 			mouseY.set(e.clientY);
@@ -205,6 +199,10 @@
 		};
 	});
 </script>
+
+<svelte:head>
+	<title>Mohammed Ghaleb - Full Stack Developer & UI/UX Enthusiast</title>
+</svelte:head>
 
 <svelte:window bind:scrollY />
 
@@ -238,7 +236,7 @@
 				Mohammed Ghaleb
 			</Button>
 
-			<Button onclick={toggleMode} variant="outline" size="icon">
+			<Button onclick={toggleMode} variant="outline" size="icon" aria-label="Toggle theme">
 				<SunIcon
 					class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 !transition-all dark:-rotate-90 dark:scale-0"
 				/>
@@ -267,7 +265,7 @@
 				</div>
 
 				<h1
-					class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-black to-black/60 dark:from-white dark:to-white/60 bg-clip-text text-transparent"
+					class="text-6xl md:text-8xl font-bold mb-6 text-black dark:text-white"
 					in:fly={{ y: 30, duration: 700, delay: 400 }}
 				>
 					Mohammed Ghaleb
@@ -281,11 +279,23 @@
 				</p>
 
 				<div class="flex gap-4 justify-center mb-12" in:fly={{ y: 30, duration: 700, delay: 800 }}>
-					<Button size="lg" class="group" href="/Mohammed Ghaleb CV.pdf" target="_blank">
+					<Button
+						size="lg"
+						class="group"
+						href="/Mohammed Ghaleb CV.pdf"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Download CV"
+					>
 						<Download class="w-4 h-4 mr-2 group-hover:animate-bounce" />
 						Download CV
 					</Button>
-					<Button size="lg" variant="outline" href="mailto:mhd.s.ghaleb@gmail.com">
+					<Button
+						size="lg"
+						variant="outline"
+						href="mailto:mhd.s.ghaleb@gmail.com"
+						aria-label="Contact Me"
+					>
 						<Mail class="w-4 h-4 mr-2" />
 						Contact Me
 					</Button>
@@ -298,6 +308,8 @@
 						class="hover:scale-110 transition-transform"
 						href="https://github.com/leaderfrank"
 						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="GitHub Profile"
 					>
 						<Github class="w-5 h-5" />
 					</Button>
@@ -307,6 +319,8 @@
 						class="hover:scale-110 transition-transform"
 						href="https://www.linkedin.com/in/mhd-ghaleb/"
 						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="LinkedIn Profile"
 					>
 						<Linkedin class="w-5 h-5" />
 					</Button>
@@ -315,6 +329,7 @@
 						size="icon"
 						class="hover:scale-110 transition-transform"
 						href="mailto:mhd.s.ghaleb@gmail.com"
+						aria-label="Send Email"
 					>
 						<Mail class="w-5 h-5" />
 					</Button>
@@ -510,9 +525,11 @@
 												<Button
 													href={project.github}
 													target="_blank"
+													rel="noopener noreferrer"
 													variant="outline"
 													size="sm"
 													class="flex-1 group/btn"
+													aria-label={`View code for ${project.title}`}
 												>
 													<Github
 														class="w-4 h-4 mr-1 group-hover/btn:rotate-12 transition-transform"
@@ -522,9 +539,11 @@
 												<Button
 													href={project.demo}
 													target="_blank"
+													rel="noopener noreferrer"
 													variant="outline"
 													size="sm"
 													class="flex-1 group/btn"
+													aria-label={`View demo for ${project.title}`}
 												>
 													<ExternalLink
 														class="w-4 h-4 mr-1 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"
@@ -555,7 +574,12 @@
 					I'm always interested in hearing about new projects and opportunities.
 				</p>
 				<div in:scale={{ duration: 600, delay: 400 }}>
-					<Button size="lg" class="group" href="mailto:mhd.s.ghaleb@gmail.com">
+					<Button
+						size="lg"
+						class="group"
+						href="mailto:mhd.s.ghaleb@gmail.com"
+						aria-label="Get in touch via email"
+					>
 						<Mail class="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
 						Get In Touch
 					</Button>
