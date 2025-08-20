@@ -179,10 +179,11 @@
 <div
 	class="relative inline-block select-none"
 	bind:this={imageElement}
+	role="button"
+	tabindex="0"
+	aria-label={alt}
 	onmousedown={handleMouseDown}
 	onmouseleave={handleMouseLeave}
-	role="img"
-	aria-label={alt}
 >
 	<!-- Glow effect -->
 	<div
@@ -194,7 +195,7 @@
 			background: radial-gradient(circle, rgba(239, 68, 68, 0.8) 0%, transparent 70%);
 			z-index: -1;
 		"
-	/>
+	></div>
 
 	<!-- Profile image container -->
 	<div
@@ -218,7 +219,7 @@
 		<!-- Gradient overlay for depth -->
 		<div
 			class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20 pointer-events-none z-10"
-		/>
+		></div>
 
 		<!-- The actual image -->
 		<img
@@ -235,19 +236,19 @@
 				{#if corner === 'top-left'}
 					<div
 						class="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-primary animate-pulse"
-					/>
+					></div>
 				{:else if corner === 'top-right'}
 					<div
 						class="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-primary animate-pulse"
-					/>
+					></div>
 				{:else if corner === 'bottom-left'}
 					<div
 						class="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-primary animate-pulse"
-					/>
+					></div>
 				{:else if corner === 'bottom-right'}
 					<div
 						class="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-primary animate-pulse"
-					/>
+					></div>
 				{/if}
 			</div>
 		{/if}
@@ -257,7 +258,7 @@
 			<div class="absolute inset-0 flex items-center justify-center bg-background/80">
 				<div
 					class="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin"
-				/>
+				></div>
 			</div>
 		{/if}
 	</div>
