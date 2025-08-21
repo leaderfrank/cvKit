@@ -45,7 +45,7 @@
 		{ name: 'Nuxt + Vue', progress: 90, category: 'Frontend + Backend' },
 		{ name: 'SvelteKit + Svelte', progress: 82, category: 'Frontend + Backend' },
 		{ name: 'Next + React', progress: 80, category: 'Frontend + Backend' },
-		{ name: 'TypeScript', progress: 85, category: 'Frontend' },
+		{ name: 'TypeScript / JavaScript', progress: 85, category: 'Backend + Frontend' },
 		{ name: 'Node.js', progress: 80, category: 'Backend' },
 		{ name: 'Python', progress: 75, category: 'Backend' },
 		{ name: 'NoSQL', progress: 75, category: 'Database' },
