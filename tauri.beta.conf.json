@@ -1,0 +1,19 @@
+{
+	"productName": "My App Beta",
+	"identifier": "com.myorg.myappbeta",
+	"build": {
+		"beforeDevCommand": "bun run dev",
+		"beforeBuildCommand": "bun run build",
+		"devUrl": "http://localhost:5173",
+		"frontendDist": "../build"
+	},
+	"app": {
+		"windows": [
+			{
+				"title": "My App",
+				"width": 800,
+				"height": 600
+			}
+		]
+	}
+}

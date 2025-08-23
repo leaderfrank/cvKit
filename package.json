@@ -11,7 +11,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check .",
+		"tauri": "tauri"
 	},
 	"devDependencies": {
 		"@dnd-kit-svelte/core": "^0.0.8",
@@ -20,11 +21,13 @@
 		"@dnd-kit-svelte/utilities": "^0.0.8",
 		"@internationalized/date": "^3.8.1",
 		"@lucide/svelte": "^0.515.0",
+		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"@tabler/icons-svelte": "^3.31.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"@tanstack/table-core": "^8.20.5",
+		"@tauri-apps/cli": "^2.8.1",
 		"@types/d3-scale": "^4.0.8",
 		"@types/d3-shape": "^3.1.7",
 		"@vite-pwa/assets-generator": "^1.0.0",
@@ -46,11 +49,9 @@
 		"vaul-svelte": "^1.0.0-next.7",
 		"vite": "^7.0.4",
 		"vite-plugin-devtools-json": "^0.2.0",
-		"vite-plugin-pwa": "^1.0.3",
 		"zod": "^3.25.64"
 	},
 	"dependencies": {
-		"@sveltejs/adapter-vercel": "^5.8.2",
 		"mode-watcher": "^1.1.0"
 	}
 }
