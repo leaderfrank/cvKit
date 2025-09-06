@@ -225,7 +225,7 @@
 		<img
 			{src}
 			{alt}
-			class="w-full h-full object-cover"
+			class="w-full h-full object-cover object-top"
 			loading="eager"
 			ondragstart={(e) => e.preventDefault()}
 		/>
