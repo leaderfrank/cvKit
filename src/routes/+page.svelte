@@ -254,7 +254,7 @@
 			<div class="container mx-auto px-6 text-center" in:fade={{ duration: 700 }}>
 				<!-- Profile Image -->
 				<div class="mb-8" in:scale={{ duration: 700, delay: 100 }}>
-					<ProfileImage src="/profile.jpg" alt="Mohammed Ghaleb Profile" />
+					<ProfileImage src="/profile.avif" alt="Mohammed Ghaleb Profile" />
 				</div>
 
 				<div class="mb-6" in:fly={{ y: 20, duration: 600, delay: 200 }}>

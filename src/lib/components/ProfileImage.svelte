@@ -3,7 +3,7 @@
 	import { spring } from 'svelte/motion';
 
 	// Props
-	const { src = '/profile.jpg', alt = 'Profile Image' } = $props();
+	const { src = '/profile.avif', alt = 'Profile Image' } = $props();
 
 	// State
 	let mounted = $state(false);
