@@ -1,5 +1,7 @@
 # sv
 
+<img alt="Animation-min.gif" src="https://github.com/leaderfrank/cvKit/blob/main/Animation-min.gif?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
+
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
 ## Creating a project
