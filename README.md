@@ -1,40 +1,52 @@
-# sv
+# Mohammed Ghaleb — Portfolio & Engineering Showcase
 
-<img alt="Animation-min.gif" src="https://github.com/leaderfrank/cvKit/blob/main/Animation-min.gif?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
+Live at [cvkit.vercel.app](https://cvkit.vercel.app/).
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A SvelteKit single-page app that is less an online résumé and more a working product:
+live API integrations, a developer-tools suite, and interactive computer-science demos —
+all statically exported and deployed on Vercel.
 
-## Creating a project
+## Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **SvelteKit 2 + Svelte 5** (runes), TypeScript strict
+- **Tailwind CSS v4** with a semantic token theme (dark default, light supported via `mode-watcher`)
+- **bits-ui / shadcn-svelte** primitives, **lucide** icons, **d3-scale/shape** for the skills radar
+- `@sveltejs/adapter-static` SPA (`ssr = false`, prerendered shell) + service worker
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Structure
 
-# create a new project in my-app
-npx sv create my-app
+```
+src/
+├─ routes/
+│  ├─ +page.svelte          Home: hero, dashboard, about, skills radar, projects, timeline, live APIs, contact
+│  ├─ tools/+page.svelte    16 client-side developer tools (JSON, JWT, hashes, regex, diff, CSS…)
+│  └─ lab/+page.svelte      Code Lab: sorting visualizer, debounce/throttle, event loop, API playground
+├─ lib/
+│  ├─ api/client.ts         Shared API layer: TTL cache (memory + localStorage), retry/backoff, abort timeouts
+│  ├─ apis/*.ts             Typed wrappers: GitHub, Hacker News, dev.to, Open-Meteo, Frankfurter v2, JokeAPI
+│  ├─ data/portfolio.ts     Single source of truth for all content
+│  ├─ tools/*.ts            Pure logic for tools (MD5, LCS diff, case, color…), no deps
+│  ├─ lab/*.ts              Sorting generators, debounce/throttle, event-loop scripts
+│  ├─ actions/reveal.ts     Scroll-reveal action (IntersectionObserver, reduced-motion aware)
+│  └─ components/
+│     ├─ layout/            Navbar, Footer
+│     ├─ sections/          Home page sections
+│     ├─ shared/            Section, ApiCard, StatCard, CopyButton, ThemeToggle, RoleRotator
+│     ├─ apis/              Live API widget cards
+│     ├─ tools/ lab/ ui/    Tool cards, lab demos, shadcn-svelte primitives
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Scripts
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm run dev       # develop
+npm run check     # svelte-kit sync + svelte-check (0 errors policy)
+npm run build     # static build → /build
+npm run preview   # preview the build
 ```
 
-## Building
+## Notes
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- All content edits go through `src/lib/data/portfolio.ts` (including testimonial placeholders).
+- External APIs are consumed client-side via `src/lib/api/client.ts` — graceful skeletons,
+  retries, caching and error states are demonstrated in the UI itself.

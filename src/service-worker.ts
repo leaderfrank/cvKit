@@ -45,6 +45,12 @@ self.addEventListener('fetch', (event) => {
 			}
 		}
 
+		// Third-party requests (live API widgets): always go to network.
+		// Freshness is managed by the app's own apiFetch TTL cache instead.
+		if (url.origin !== self.location.origin) {
+			return fetch(event.request);
+		}
+
 		try {
 			const response = await fetch(event.request);
 

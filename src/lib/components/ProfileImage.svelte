@@ -192,7 +192,7 @@
 			transform: rotate({$rotation}deg) scale({$scale});
 			filter: blur(20px);
 			opacity: {$glowIntensity / 100};
-			background: radial-gradient(circle, rgba(239, 68, 68, 0.8) 0%, transparent 70%);
+			background: radial-gradient(circle, rgba(139, 102, 252, 0.8) 0%, transparent 70%);
 			z-index: -1;
 		"
 	></div>
@@ -213,7 +213,7 @@
 			transition: {isDragging ? 'none' : 'box-shadow 0.3s ease'};
 			box-shadow: 
 				0 10px 40px rgba(0, 0, 0, 0.3),
-				0 0 {$glowIntensity}px rgba(239, 68, 68, {$glowIntensity / 100});
+				0 0 {$glowIntensity}px rgba(139, 102, 252, {$glowIntensity / 100});
 		"
 	>
 		<!-- Gradient overlay for depth -->
