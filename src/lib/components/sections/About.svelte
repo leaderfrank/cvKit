@@ -33,9 +33,9 @@
 				I'm {profile.name}, a {profile.title} based in {profile.location}. Over the past two years
 				I've built
 				<span class="font-semibold text-primary">scalable web applications</span>,
-				<span class="font-semibold text-primary">Flutter mobile apps</span>,
+				<span class="font-semibold text-primary">Flutter and Tauri apps</span>,
 				<span class="font-semibold text-primary">backend services</span>,
-				<span class="font-semibold text-primary">ERP systems</span>,
+				<span class="font-semibold text-primary">ERP and POS systems</span>,
 				<span class="font-semibold text-primary">fintech &amp; SaaS platforms</span>, and the
 				<span class="font-semibold text-primary">REST APIs</span> that tie them together.
 			</p>

@@ -20,7 +20,7 @@
 		onScroll();
 		window.addEventListener('scroll', onScroll, { passive: true });
 
-		const sections = ['about', 'skills', 'projects', 'experience', 'apis', 'contact']
+		const sections = ['about', 'skills', 'projects', 'apps', 'experience', 'contact']
 			.map((id) => document.getElementById(id))
 			.filter((el): el is HTMLElement => el !== null);
 
@@ -48,7 +48,7 @@
 </script>
 
 <svelte:head>
-	<title>Mohammed Ghaleb — Full Stack Software Engineer</title>
+	<meta name="author" content="Mohammed Ghaleb" />
 </svelte:head>
 
 <a

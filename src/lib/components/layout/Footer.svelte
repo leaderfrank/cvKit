@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navLinks, pageLinks, profile } from '$lib/data/portfolio';
+	import { navLinks, pageLinks, profile, playApps } from '$lib/data/portfolio';
 	import Github from '@lucide/svelte/icons/github';
 	import Linkedin from '@lucide/svelte/icons/linkedin';
 	import Mail from '@lucide/svelte/icons/mail';
@@ -22,6 +22,7 @@
 				</div>
 				<p class="mt-3 max-w-sm text-sm text-muted-foreground">
 					{profile.title} building production software — web, mobile and everything in between.
+					{playApps.length} apps live on Google Play.
 				</p>
 			</div>
 

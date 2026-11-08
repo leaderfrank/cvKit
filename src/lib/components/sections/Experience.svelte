@@ -13,10 +13,10 @@
 	id="experience"
 	eyebrow="// career timeline"
 	title="Where I've shipped."
-	description="Three chapters so far — each one ending with measurably better systems than I found."
+	description="Four chapters so far — each one ending with measurably better systems than I found."
 	class="border-y border-border/60 bg-muted/30"
 >
-	<div class="relative mx-auto max-w-3xl">
+	<div class="relative mx-auto max-w-4xl">
 		<!-- timeline spine -->
 		<div
 			class="absolute top-0 bottom-0 left-[19px] w-px bg-linear-to-b from-primary via-border to-transparent sm:left-1/2"

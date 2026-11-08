@@ -1,16 +1,34 @@
 <script lang="ts">
 	import Section from '$lib/components/shared/Section.svelte';
-	import { projects } from '$lib/data/portfolio';
+	import { projects, repos, supportingWork, profile } from '$lib/data/portfolio';
 	import { reveal } from '$lib/actions/reveal';
 	import { cn } from '$lib/utils.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import FileText from '@lucide/svelte/icons/file-text';
 	import GitBranch from '@lucide/svelte/icons/git-branch';
 	import Globe from '@lucide/svelte/icons/globe';
-	import LayoutTemplate from '@lucide/svelte/icons/layout-template';
+	import Truck from '@lucide/svelte/icons/truck';
+	import Store from '@lucide/svelte/icons/store';
+	import Wrench from '@lucide/svelte/icons/wrench';
 	import Gauge from '@lucide/svelte/icons/gauge';
+	import LayoutTemplate from '@lucide/svelte/icons/layout-template';
+	import Star from '@lucide/svelte/icons/star';
+	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
+	import Github from '@lucide/svelte/icons/github';
 
-	const projectIcons = [FileText, GitBranch, Globe];
+	const projectIcons: Record<string, typeof FileText> = {
+		'file-text': FileText,
+		'git-branch': GitBranch,
+		globe: Globe,
+		truck: Truck,
+		store: Store,
+		wrench: Wrench
+	};
+
+	const supportIcons: Record<string, typeof Gauge> = {
+		layout: LayoutTemplate,
+		gauge: Gauge
+	};
 
 	const accentStyles: Record<string, string> = {
 		violet: 'from-chart-1/90 to-primary',
@@ -27,8 +45,8 @@
 	description="Not tutorial clones — each of these solved a real problem for real users. Architecture, challenges and outcomes included."
 >
 	<div class="space-y-8">
-		{#each projects as project, i (project.name)}
-			{@const Icon = projectIcons[i]}
+		{#each projects as project (project.name)}
+			{@const Icon = projectIcons[project.icon] ?? Globe}
 			<article
 				class="group overflow-hidden rounded-2xl border border-border/70 bg-card shadow-xs transition-all duration-300 hover:shadow-lg"
 				use:reveal
@@ -47,7 +65,7 @@
 								<Icon class="size-5.5 text-white" />
 							</span>
 							<span class="font-mono text-[10px] tracking-widest text-white/70 uppercase">
-								{String(i + 1).padStart(2, '0')}
+								{project.period}
 							</span>
 						</div>
 						<div class="relative">
@@ -87,6 +105,16 @@
 								</div>
 							{/each}
 						</div>
+
+						<a
+							href={project.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
+						>
+							Visit {project.name}
+							<ArrowUpRight class="size-3.5" />
+						</a>
 					</div>
 				</div>
 			</article>
@@ -95,35 +123,82 @@
 
 	<!-- Supporting work strip -->
 	<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2" use:reveal>
-		<div
-			class="flex items-start gap-4 rounded-xl border border-dashed border-border bg-card/50 p-5"
-		>
-			<span class="grid size-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
-				<LayoutTemplate class="size-4.5" />
-			</span>
+		{#each supportingWork as item (item.title)}
+			{@const Icon = supportIcons[item.icon] ?? Gauge}
+			<div
+				class="flex items-start gap-4 rounded-xl border border-dashed border-border bg-card/50 p-5"
+			>
+				<span class="grid size-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+					<Icon class="size-4.5" />
+				</span>
+				<div>
+					<h3 class="font-display text-sm font-semibold">{item.title}</h3>
+					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+					<a
+						href={item.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mt-2 inline-block font-mono text-[11px] text-primary underline-offset-4 hover:underline"
+						>{item.linkLabel}</a
+					>
+				</div>
+			</div>
+		{/each}
+	</div>
+
+	<!-- Open source -->
+	<div class="mt-16" use:reveal>
+		<div class="flex flex-wrap items-end justify-between gap-4">
 			<div>
-				<h3 class="font-display text-sm font-semibold">Excel automation suite</h3>
-				<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
-					Python utilities at MyERP that automated migration verification and weekly reporting —
-					replacing manual spreadsheet work with auditable scripts.
+				<p class="mb-2 font-mono text-xs font-semibold tracking-[0.25em] text-primary uppercase">
+					// open source
+				</p>
+				<h3 class="font-display text-2xl font-bold tracking-tight">Also on GitHub.</h3>
+				<p class="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+					Public repositories that aren't covered by the apps or the case studies above — libraries,
+					experiments and tools I actually use.
 				</p>
 			</div>
+			<a
+				href={profile.github}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-primary/50 hover:text-primary"
+			>
+				<Github class="size-4" /> @{profile.githubHandle}
+			</a>
 		</div>
-		<div
-			class="flex items-start gap-4 rounded-xl border border-dashed border-border bg-card/50 p-5"
-		>
-			<span class="grid size-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
-				<Gauge class="size-4.5" />
-			</span>
-			<div>
-				<h3 class="font-display text-sm font-semibold">This website</h3>
-				<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
-					SvelteKit + Tailwind v4, statically exported, ~0 config. The live API widgets, the
-					<a href="/tools" class="text-primary underline-offset-4 hover:underline">tools</a> and the
-					<a href="/lab" class="text-primary underline-offset-4 hover:underline">code lab</a> are the
-					demos.
-				</p>
-			</div>
+
+		<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{#each repos as repo, i (repo.name)}
+				<a
+					href={repo.link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group flex flex-col rounded-xl border border-border/70 bg-card p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
+					use:reveal={{ delay: i * 60 }}
+				>
+					<div class="flex items-start justify-between gap-2">
+						<h4 class="font-display text-sm font-semibold break-all">{repo.name}</h4>
+						<span
+							class="inline-flex shrink-0 items-center gap-1 font-mono text-[11px] text-muted-foreground"
+						>
+							<Star class="size-3" />{repo.stars}
+						</span>
+					</div>
+					<p class="mt-2 grow text-sm leading-relaxed text-muted-foreground">{repo.description}</p>
+					<div class="mt-3 flex flex-wrap gap-1.5">
+						{#each repo.stack as tech (tech)}
+							<Badge variant="secondary" class="font-mono text-[10px]">{tech}</Badge>
+						{/each}
+					</div>
+					<span
+						class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100"
+					>
+						View repo <ArrowUpRight class="size-3" />
+					</span>
+				</a>
+			{/each}
 		</div>
 	</div>
 </Section>

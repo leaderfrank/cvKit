@@ -18,7 +18,7 @@ all statically exported and deployed on Vercel.
 ```
 src/
 ├─ routes/
-│  ├─ +page.svelte          Home: hero, dashboard, about, skills radar, projects, timeline, live APIs, contact
+│  ├─ +page.svelte          Home: hero, dashboard, about, skills radar, projects, Play apps, timeline, education, live APIs, contact
 │  ├─ tools/+page.svelte    16 client-side developer tools (JSON, JWT, hashes, regex, diff, CSS…)
 │  └─ lab/+page.svelte      Code Lab: sorting visualizer, debounce/throttle, event loop, API playground
 ├─ lib/
@@ -47,6 +47,9 @@ npm run preview   # preview the build
 
 ## Notes
 
-- All content edits go through `src/lib/data/portfolio.ts` (including testimonial placeholders).
+- All content edits go through `src/lib/data/portfolio.ts` — profile, experience, projects, the
+  Google Play app list, GitHub repos, education, certifications and Haraj services all live there.
+- The Google Play list in `portfolio.ts` mirrors the developer page at
+  <https://play.google.com/store/apps/dev?id=7415399730246466855>. Re-check it before publishing.
 - External APIs are consumed client-side via `src/lib/api/client.ts` — graceful skeletons,
   retries, caching and error states are demonstrated in the UI itself.

@@ -8,14 +8,13 @@
 	import Rocket from '@lucide/svelte/icons/rocket';
 	import Layers from '@lucide/svelte/icons/layers';
 	import Github from '@lucide/svelte/icons/github';
-	import CodeXml from '@lucide/svelte/icons/code-xml';
-	import Braces from '@lucide/svelte/icons/braces';
-	import Coffee from '@lucide/svelte/icons/coffee';
-	import Cloud from '@lucide/svelte/icons/cloud';
-	import Plug from '@lucide/svelte/icons/plug';
+	import Smartphone from '@lucide/svelte/icons/smartphone';
+	import Award from '@lucide/svelte/icons/award';
 
-	// Live repo count from GitHub (shares the apiFetch cache with the GitHub widget)
-	let repos = $state(19);
+	// Live repo count from GitHub (shares the apiFetch cache with the GitHub widget).
+	// The fallback matches the public count at the time of writing, so the card still
+	// reads correctly when the unauthenticated API is rate-limited.
+	let repos = $state(29);
 
 	onMount(async () => {
 		const res = await apiFetch<{ public_repos?: number }>(
@@ -34,9 +33,9 @@
 			icon: 'clock'
 		},
 		{
-			value: dashboardStats.projectsCompleted,
+			value: dashboardStats.clientProjects,
 			suffix: '+',
-			label: 'Projects completed',
+			label: 'Client projects',
 			hint: 'web · mobile · backend',
 			icon: 'rocket'
 		},
@@ -56,39 +55,18 @@
 			live: true
 		},
 		{
-			value: dashboardStats.languages,
+			value: dashboardStats.playApps,
 			suffix: '',
-			label: 'Languages',
-			hint: 'TS · JS · Python · Dart…',
-			icon: 'code'
+			label: 'Apps on Google Play',
+			hint: 'published & maintained',
+			icon: 'mobile'
 		},
 		{
-			value: dashboardStats.linesOfCode,
-			suffix: '+',
-			label: 'Lines of code',
-			hint: 'estimated',
-			icon: 'braces'
-		},
-		{
-			value: dashboardStats.deployments,
-			suffix: '+',
-			label: 'Deployments',
-			hint: 'CI/CD pipelines',
-			icon: 'cloud'
-		},
-		{
-			value: dashboardStats.apiIntegrations,
-			suffix: '+',
-			label: 'API integrations',
-			hint: 'REST · auth · webhooks',
-			icon: 'plug'
-		},
-		{
-			value: dashboardStats.coffees,
+			value: dashboardStats.certifications,
 			suffix: '',
-			label: 'Cups of coffee',
-			hint: 'fuel for shipping',
-			icon: 'coffee'
+			label: 'Certifications',
+			hint: 'Oracle · AWS · Vercel',
+			icon: 'award'
 		}
 	]);
 
@@ -97,11 +75,8 @@
 		rocket: Rocket,
 		layers: Layers,
 		github: Github,
-		code: CodeXml,
-		braces: Braces,
-		coffee: Coffee,
-		cloud: Cloud,
-		plug: Plug
+		mobile: Smartphone,
+		award: Award
 	};
 </script>
 

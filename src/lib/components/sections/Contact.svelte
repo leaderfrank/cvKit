@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Section from '$lib/components/shared/Section.svelte';
 	import CopyButton from '$lib/components/shared/CopyButton.svelte';
-	import { profile } from '$lib/data/portfolio';
+	import { profile, services } from '$lib/data/portfolio';
 	import { reveal } from '$lib/actions/reveal';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import Mail from '@lucide/svelte/icons/mail';
@@ -10,6 +10,9 @@
 	import Download from '@lucide/svelte/icons/download';
 	import MessageSquare from '@lucide/svelte/icons/message-square';
 	import MapPin from '@lucide/svelte/icons/map-pin';
+	import Smartphone from '@lucide/svelte/icons/smartphone';
+	import Store from '@lucide/svelte/icons/store';
+	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 </script>
 
 <Section id="contact" eyebrow="// let's talk" title="Build something solid with me.">
@@ -58,6 +61,15 @@
 						</span>
 						<CopyButton text={profile.linkedin} label="LinkedIn URL" />
 					</div>
+					<div
+						class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border/70 bg-background/70 px-4 py-3"
+					>
+						<span class="inline-flex items-center gap-2.5 text-sm">
+							<Store class="size-4 text-primary" />
+							<span class="font-mono text-[13px]">haraj.com.sa/en/users/{profile.harajHandle}</span>
+						</span>
+						<CopyButton text={profile.haraj} label="Haraj profile URL" />
+					</div>
 				</div>
 
 				<p class="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground">
@@ -96,10 +108,76 @@
 					>
 						<Linkedin class="size-4" /> LinkedIn
 					</Button>
+					<Button
+						href={profile.playStore}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="secondary"
+						class="gap-2"
+					>
+						<Smartphone class="size-4" /> Play Store
+					</Button>
+					<Button
+						href={profile.haraj}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="secondary"
+						class="gap-2"
+					>
+						<Store class="size-4" /> Haraj
+					</Button>
 				</div>
 				<p class="mt-2 font-mono text-center text-[11px] text-muted-foreground">
 					// response time: &lt; 24h · timezone: Asia/Riyadh
 				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services offered via Koprey (from the Haraj profile) -->
+	<div class="mt-10" use:reveal>
+		<div class="flex flex-wrap items-end justify-between gap-3">
+			<div>
+				<p class="mb-2 font-mono text-xs font-semibold tracking-[0.25em] text-primary uppercase">
+					// services
+				</p>
+				<h3 class="font-display text-xl font-bold tracking-tight">
+					Freelance work, through Koprey.
+				</h3>
+			</div>
+			<a
+				href={profile.haraj}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
+			>
+				See the listings on Haraj <ArrowUpRight class="size-3.5" />
+			</a>
+		</div>
+
+		<div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+			{#each services as service, i (service.title)}
+				<div
+					class="rounded-xl border border-border/70 bg-card p-4 shadow-xs transition-colors hover:border-primary/40"
+					use:reveal={{ delay: i * 60 }}
+				>
+					<h4 class="font-display text-sm font-semibold">{service.title}</h4>
+					<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{service.detail}</p>
+				</div>
+			{/each}
+			<div
+				class="flex flex-col justify-center rounded-xl border border-dashed border-border bg-card/50 p-4"
+			>
+				<p class="text-sm leading-relaxed text-muted-foreground">
+					All engagements are quoted per project. Email is the fastest way in — I usually reply the
+					same day.
+				</p>
+				<a
+					href="mailto:{profile.email}?subject=Project%20enquiry"
+					class="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
+				>
+					Start a project <ArrowUpRight class="size-3.5" />
+				</a>
 			</div>
 		</div>
 	</div>

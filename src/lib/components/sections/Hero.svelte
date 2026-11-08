@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { profile, yearsExperience, totalTechCount } from '$lib/data/portfolio';
+	import { profile, yearsExperience, totalTechCount, playApps } from '$lib/data/portfolio';
 	import ProfileImage from '$lib/components/ProfileImage.svelte';
 	import RoleRotator from '$lib/components/shared/RoleRotator.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -9,19 +9,20 @@
 	import ArrowDown from '@lucide/svelte/icons/arrow-down';
 	import Github from '@lucide/svelte/icons/github';
 	import Linkedin from '@lucide/svelte/icons/linkedin';
+	import Smartphone from '@lucide/svelte/icons/smartphone';
 
 	const roles = [
-		'Full Stack Software Engineer',
+		'Full Stack Developer',
 		'TypeScript Specialist',
 		'API Architect',
 		'Flutter Developer',
-		'Performance Obsessive'
+		'Google Play Publisher'
 	];
 
 	const chips = [
 		{ value: `${yearsExperience}+`, label: 'years experience' },
 		{ value: `${totalTechCount}`, label: 'technologies' },
-		{ value: '35%', label: 'faster platforms' }
+		{ value: `${playApps.length}`, label: 'Play Store apps' }
 	];
 </script>
 
@@ -105,6 +106,14 @@
 						variant="ghost"
 						size="icon"
 						aria-label="LinkedIn profile"><Linkedin class="size-4.5" /></Button
+					>
+					<Button
+						href={profile.playStore}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="ghost"
+						size="icon"
+						aria-label="Google Play developer page"><Smartphone class="size-4.5" /></Button
 					>
 				</div>
 			</div>

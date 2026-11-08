@@ -6,7 +6,9 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter({
-			fallback: 'index.html'
+			// SPA fallback for unknown routes. Using 404.html keeps the prerendered
+			// index.html intact instead of overwriting it (adapter-static warning).
+			fallback: '404.html'
 		})
 	}
 };
